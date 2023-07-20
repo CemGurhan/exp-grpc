@@ -1,18 +1,34 @@
 syntax = "proto3";
 package your.service.v1;
-option go_package = "github.com/yourorg/yourprotos/gen/go/your/service/v1";
+option go_package = "/exp-go";
 
 import "google/api/annotations.proto";
 
-message StringMessage {
+service Category {
+  rpc SearchCategory(SearchCategoryRequest) returns (SearchCategoryResponse) {
+    option (google.api.http) = {
+      get: "/v1/categories/search"
+    };
+  }
+  rpc GetCategory(GetCategoryRequest) returns (GetCategoryResponse) {
+    option (google.api.http) = {
+      get: "/v1/categories/{id}"
+    };
+    }
+}
+
+message SearchCategoryRequest {
   string value = 1;
 }
 
-service YourService {
-  rpc Echo(StringMessage) returns (StringMessage) {
-      option (google.api.http) = {
-        post: "/v1/example/echo"
-        body: "*"
-      };
-  }
+message SearchCategoryResponse {
+  string value = 1;
+}
+
+message GetCategoryRequest {
+  string id = 1;
+}
+
+message GetCategoryResponse {
+  string value = 1;
 }
