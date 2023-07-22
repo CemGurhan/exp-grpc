@@ -11,7 +11,7 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 
-	gw "exp-grpc/gen/go" // Update
+	gw "github.com/cemgurhan/exp-grpc/gen/go" // Update
 )
 
 var (
@@ -20,7 +20,7 @@ var (
 	grpcServerEndpoint = flag.String("grpc-server-endpoint", "localhost:9090", "gRPC server endpoint")
 )
 
-const gatewayPort string = "8081"
+const gatewayPort int = 8081
 
 func RunProxy() error {
 	ctx := context.Background()
@@ -37,8 +37,8 @@ func RunProxy() error {
 	}
 
 	// Start HTTP server (and proxy calls to gRPC server endpoint)
-	fmt.Printf("gateway port: %s\n", gatewayPort)
-	return http.ListenAndServe(fmt.Sprintf(":%s", gatewayPort), mux)
+	fmt.Printf("Running gRPC gateway at port %d\n", gatewayPort)
+	return http.ListenAndServe(fmt.Sprintf(":%d", gatewayPort), mux)
 }
 
 func main() {

@@ -19,16 +19,16 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Category_SearchCategory_FullMethodName = "/your.service.v1.Category/SearchCategory"
 	Category_GetCategory_FullMethodName    = "/your.service.v1.Category/GetCategory"
+	Category_SearchCategory_FullMethodName = "/your.service.v1.Category/SearchCategory"
 )
 
 // CategoryClient is the client API for Category service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type CategoryClient interface {
-	SearchCategory(ctx context.Context, in *SearchCategoryRequest, opts ...grpc.CallOption) (*SearchCategoryResponse, error)
 	GetCategory(ctx context.Context, in *GetCategoryRequest, opts ...grpc.CallOption) (*GetCategoryResponse, error)
+	SearchCategory(ctx context.Context, in *SearchCategoryRequest, opts ...grpc.CallOption) (*SearchCategoryResponse, error)
 }
 
 type categoryClient struct {
@@ -37,15 +37,6 @@ type categoryClient struct {
 
 func NewCategoryClient(cc grpc.ClientConnInterface) CategoryClient {
 	return &categoryClient{cc}
-}
-
-func (c *categoryClient) SearchCategory(ctx context.Context, in *SearchCategoryRequest, opts ...grpc.CallOption) (*SearchCategoryResponse, error) {
-	out := new(SearchCategoryResponse)
-	err := c.cc.Invoke(ctx, Category_SearchCategory_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
 }
 
 func (c *categoryClient) GetCategory(ctx context.Context, in *GetCategoryRequest, opts ...grpc.CallOption) (*GetCategoryResponse, error) {
@@ -57,12 +48,21 @@ func (c *categoryClient) GetCategory(ctx context.Context, in *GetCategoryRequest
 	return out, nil
 }
 
+func (c *categoryClient) SearchCategory(ctx context.Context, in *SearchCategoryRequest, opts ...grpc.CallOption) (*SearchCategoryResponse, error) {
+	out := new(SearchCategoryResponse)
+	err := c.cc.Invoke(ctx, Category_SearchCategory_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // CategoryServer is the server API for Category service.
 // All implementations must embed UnimplementedCategoryServer
 // for forward compatibility
 type CategoryServer interface {
-	SearchCategory(context.Context, *SearchCategoryRequest) (*SearchCategoryResponse, error)
 	GetCategory(context.Context, *GetCategoryRequest) (*GetCategoryResponse, error)
+	SearchCategory(context.Context, *SearchCategoryRequest) (*SearchCategoryResponse, error)
 	mustEmbedUnimplementedCategoryServer()
 }
 
@@ -70,11 +70,11 @@ type CategoryServer interface {
 type UnimplementedCategoryServer struct {
 }
 
-func (UnimplementedCategoryServer) SearchCategory(context.Context, *SearchCategoryRequest) (*SearchCategoryResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SearchCategory not implemented")
-}
 func (UnimplementedCategoryServer) GetCategory(context.Context, *GetCategoryRequest) (*GetCategoryResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCategory not implemented")
+}
+func (UnimplementedCategoryServer) SearchCategory(context.Context, *SearchCategoryRequest) (*SearchCategoryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SearchCategory not implemented")
 }
 func (UnimplementedCategoryServer) mustEmbedUnimplementedCategoryServer() {}
 
@@ -87,24 +87,6 @@ type UnsafeCategoryServer interface {
 
 func RegisterCategoryServer(s grpc.ServiceRegistrar, srv CategoryServer) {
 	s.RegisterService(&Category_ServiceDesc, srv)
-}
-
-func _Category_SearchCategory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SearchCategoryRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CategoryServer).SearchCategory(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Category_SearchCategory_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CategoryServer).SearchCategory(ctx, req.(*SearchCategoryRequest))
-	}
-	return interceptor(ctx, in, info, handler)
 }
 
 func _Category_GetCategory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -125,6 +107,24 @@ func _Category_GetCategory_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Category_SearchCategory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SearchCategoryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CategoryServer).SearchCategory(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Category_SearchCategory_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CategoryServer).SearchCategory(ctx, req.(*SearchCategoryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Category_ServiceDesc is the grpc.ServiceDesc for Category service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -133,12 +133,12 @@ var Category_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*CategoryServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "SearchCategory",
-			Handler:    _Category_SearchCategory_Handler,
-		},
-		{
 			MethodName: "GetCategory",
 			Handler:    _Category_GetCategory_Handler,
+		},
+		{
+			MethodName: "SearchCategory",
+			Handler:    _Category_SearchCategory_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

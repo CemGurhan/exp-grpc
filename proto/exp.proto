@@ -5,15 +5,15 @@ option go_package = "/exp-go";
 import "google/api/annotations.proto";
 
 service Category {
-  rpc SearchCategory(SearchCategoryRequest) returns (SearchCategoryResponse) {
-    option (google.api.http) = {
-      get: "/v1/categories/search"
-    };
-  }
   rpc GetCategory(GetCategoryRequest) returns (GetCategoryResponse) {
     option (google.api.http) = {
       get: "/v1/categories/{id}"
     };
+    }
+    rpc SearchCategory(SearchCategoryRequest) returns (SearchCategoryResponse) {
+      option (google.api.http) = {
+        get: "/v1/categories/search"
+      };
     }
 }
 

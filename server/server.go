@@ -1,12 +1,13 @@
 package main
 
 import (
-	pb "exp-grpc/gen/go"
-	"exp-grpc/server/categories"
 	"flag"
 	"fmt"
 	"log"
 	"net"
+
+	pb "github.com/cemgurhan/exp-grpc/gen/go"
+	"github.com/cemgurhan/exp-grpc/server/categories"
 
 	"google.golang.org/grpc"
 )
