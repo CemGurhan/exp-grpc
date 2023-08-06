@@ -18,17 +18,21 @@ service Category {
 }
 
 message SearchCategoryRequest {
+  // This is a comment describing what search category request does.
   string value = 1;
 }
 
 message SearchCategoryResponse {
+  // This is a comment describing what search category response does.
   string value = 1;
 }
 
 message GetCategoryRequest {
+  // This is a comment describing what get category request does.
   string id = 1;
 }
 
 message GetCategoryResponse {
+  // This is a comment describing what get category response does.
   string value = 1;
 }
