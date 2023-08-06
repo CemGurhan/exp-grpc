@@ -5,11 +5,17 @@ option go_package = "/exp-go";
 import "google/api/annotations.proto";
 
 service Category {
+  // We can describe GetCategory with comments.
+  //
+  // {{import "tables.md"}}
   rpc GetCategory(GetCategoryRequest) returns (GetCategoryResponse) {
     option (google.api.http) = {
       get: "/v1/categories/{id}"
     };
     }
+    // We can describe SearchCategory with comments.
+    //
+    // {{import "tables.md"}}
     rpc SearchCategory(SearchCategoryRequest) returns (SearchCategoryResponse) {
       option (google.api.http) = {
         get: "/v1/categories/search"

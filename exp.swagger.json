@@ -1,0 +1,134 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "exp.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "Category"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/categories/search": {
+      "get": {
+        "summary": "We can describe SearchCategory with comments.",
+        "description": "## SearchCategoryRequest\n| Field ID    | Name      | Type                                                       | Description                  |\n| ----------- | --------- | ---------------------------------------------------------  | ---------------------------- | \n| 1 | value | TYPE_STRING | This is a comment describing what search category request does. | \n\n## SearchCategoryResponse\n| Field ID    | Name      | Type                                                       | Description                  |\n| ----------- | --------- | ---------------------------------------------------------- | ---------------------------- | \n| 1 | value | TYPE_STRING | This is a comment describing what search category response does. |",
+        "operationId": "Category_SearchCategory",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1SearchCategoryResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "value",
+            "description": "This is a comment describing what search category request does.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Category"
+        ]
+      }
+    },
+    "/v1/categories/{id}": {
+      "get": {
+        "summary": "We can describe GetCategory with comments.",
+        "description": "## GetCategoryRequest\n| Field ID    | Name      | Type                                                       | Description                  |\n| ----------- | --------- | ---------------------------------------------------------  | ---------------------------- | \n| 1 | id | TYPE_STRING | This is a comment describing what get category request does. | \n\n## GetCategoryResponse\n| Field ID    | Name      | Type                                                       | Description                  |\n| ----------- | --------- | ---------------------------------------------------------- | ---------------------------- | \n| 1 | value | TYPE_STRING | This is a comment describing what get category response does. |",
+        "operationId": "Category_GetCategory",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetCategoryResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "This is a comment describing what get category request does.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Category"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "v1GetCategoryResponse": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "string",
+          "description": "This is a comment describing what get category response does."
+        }
+      }
+    },
+    "v1SearchCategoryResponse": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "string",
+          "description": "This is a comment describing what search category response does."
+        }
+      }
+    }
+  }
+}
