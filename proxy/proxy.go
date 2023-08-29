@@ -11,7 +11,7 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 
-	gw "github.com/cemgurhan/exp-grpc/gen/go" // Update
+	gw "github.com/cemgurhan/exp-grpc-gateway/gen/go" // Update
 )
 
 var (

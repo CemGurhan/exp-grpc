@@ -16,7 +16,7 @@
     "application/json"
   ],
   "paths": {
-    "/v1/categories/search": {
+    "/v1/categories/all": {
       "get": {
         "summary": "We can describe SearchCategory with comments.",
         "description": "## SearchCategoryRequest\n| Field ID    | Name      | Type                                                       | Description                  |\n| ----------- | --------- | ---------------------------------------------------------  | ---------------------------- | \n| 1 | value | TYPE_STRING | This is a comment describing what search category request does. | \n\n## SearchCategoryResponse\n| Field ID    | Name      | Type                                                       | Description                  |\n| ----------- | --------- | ---------------------------------------------------------- | ---------------------------- | \n| 1 | value | TYPE_STRING | This is a comment describing what search category response does. |",
@@ -49,7 +49,7 @@
         ]
       }
     },
-    "/v1/categories/{id}": {
+    "/v1/categories/get/{id}": {
       "get": {
         "summary": "We can describe GetCategory with comments.",
         "description": "## GetCategoryRequest\n| Field ID    | Name      | Type                                                       | Description                  |\n| ----------- | --------- | ---------------------------------------------------------  | ---------------------------- | \n| 1 | id | TYPE_STRING | This is a comment describing what get category request does. | \n\n## GetCategoryResponse\n| Field ID    | Name      | Type                                                       | Description                  |\n| ----------- | --------- | ---------------------------------------------------------- | ---------------------------- | \n| 1 | value | TYPE_STRING | This is a comment describing what get category response does. |",

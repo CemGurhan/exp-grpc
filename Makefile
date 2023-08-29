@@ -1,6 +1,6 @@
 gen-buf:
 	buf generate proto
-.PHONY: gen
+.PHONY: gen-buf
 
 gen-protoc:
 	protoc -I ./proto \

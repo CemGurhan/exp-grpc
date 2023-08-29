@@ -1,4 +1,4 @@
-module github.com/cemgurhan/exp-grpc
+module github.com/cemgurhan/exp-grpc-gateway
 
 go 1.20
 

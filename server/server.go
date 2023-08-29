@@ -6,8 +6,8 @@ import (
 	"log"
 	"net"
 
-	pb "github.com/cemgurhan/exp-grpc/gen/go"
-	"github.com/cemgurhan/exp-grpc/server/categories"
+	pb "github.com/cemgurhan/exp-grpc-gateway/gen/go"
+	"github.com/cemgurhan/exp-grpc-gateway/server/categories"
 
 	"google.golang.org/grpc"
 )

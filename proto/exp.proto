@@ -10,7 +10,7 @@ service Category {
   // {{import "tables.md"}}
   rpc GetCategory(GetCategoryRequest) returns (GetCategoryResponse) {
     option (google.api.http) = {
-      get: "/v1/categories/{id}"
+      get: "/v1/categories/get/{id}"
     };
     }
     // We can describe SearchCategory with comments.
@@ -18,7 +18,7 @@ service Category {
     // {{import "tables.md"}}
     rpc SearchCategory(SearchCategoryRequest) returns (SearchCategoryResponse) {
       option (google.api.http) = {
-        get: "/v1/categories/search"
+        get: "/v1/categories/all"
       };
     }
 }

@@ -3,7 +3,7 @@ package categories
 import (
 	"context"
 
-	pb "github.com/cemgurhan/exp-grpc/gen/go"
+	pb "github.com/cemgurhan/exp-grpc-gateway/gen/go"
 )
 
 type CategoryServer struct {
